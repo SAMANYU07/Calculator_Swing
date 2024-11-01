@@ -1,5 +1,8 @@
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -19,10 +22,24 @@ public class MainWin extends JFrame implements ActionListener {
         JButton cButton, equalButton, plusButton, minusButton, multButton, divButton, decimalButton;
         JButton[] operButtons;
         JTextField textField;
+        JMenuBar menuBar;
+        JMenu optionMenu;
+        JMenuItem programmingItem, exitItem;
         ArrayList<Character> operationList = new ArrayList<>(Arrays.asList('+', '-', '*', '/'));
         // Float oper1, oper2;
         MainWin()
         {
+                menuBar = new JMenuBar();
+                optionMenu = new JMenu("Options");
+                programmingItem = new JMenuItem("Programming Mode");
+                exitItem = new JMenuItem("Exit");
+
+                menuBar.add(optionMenu);
+                optionMenu.add(programmingItem);
+                optionMenu.add(exitItem);
+                programmingItem.addActionListener(this);
+                exitItem.addActionListener(this);
+
                 JPanel mainPanel = new JPanel();
                 JPanel numJPanel = new JPanel();
                 JPanel operPanel = new JPanel();
@@ -100,11 +117,16 @@ public class MainWin extends JFrame implements ActionListener {
                 keyPanel.setBackground(Color.BLACK);
                 mainPanel.setBackground(Color.BLACK);
                 this.add(mainPanel);
+                this.setJMenuBar(menuBar);
         }
         @Override
         public void actionPerformed(ActionEvent e)
         {
-                if (e.getSource() == this.cButton)
+                if (e.getSource() == this.exitItem)
+                        System.exit(ABORT);
+                else if (e.getSource() == this.programmingItem)
+                        JOptionPane.showMessageDialog(this, "Option is in developmet", "Hold on", JOptionPane.DEFAULT_OPTION);
+                else if (e.getSource() == this.cButton)
                         this.textField.setText("");
                 else if (e.getSource() == this.decimalButton && this.textField.getText().length() != 0)
                         this.textField.setText(this.textField.getText() + ".");
@@ -117,7 +139,7 @@ public class MainWin extends JFrame implements ActionListener {
                                 if (e.getSource() == button)
                                 {
                                         boolean EVAL_SUCCESS = true;
-                                        if (this.textField.getText().contains("+") || this.textField.getText().contains("-") || this.textField.getText().contains("*") || this.textField.getText().contains("/"))
+                                        if (this.textField.getText().contains("+") || this.textField.getText().contains("*") || this.textField.getText().contains("-") || this.textField.getText().contains("/"))
                                                 EVAL_SUCCESS = eval();
                                         if (EVAL_SUCCESS)
                                                 this.textField.setText(this.textField.getText() + button.getText());
@@ -130,7 +152,7 @@ public class MainWin extends JFrame implements ActionListener {
                 Float res;
                 for (int i = 0; i < this.textField.getText().length(); i++)
                 {
-                        if (this.textField.getText().charAt(i) == '+')
+                        if (this.textField.getText().charAt(i) == '+' && i != 0)
                         {
                                 try
                                 {
@@ -144,7 +166,7 @@ public class MainWin extends JFrame implements ActionListener {
                                         return false;
                                 }
                         }
-                        else if (this.textField.getText().charAt(i) == '-')
+                        else if (this.textField.getText().charAt(i) == '-' && i != 0)
                         {
                                 try
                                 {
