@@ -20,7 +20,7 @@ import java.util.Arrays;
 
 public class MainWin extends JFrame implements ActionListener {
         JButton cButton, equalButton, plusButton, minusButton, multButton, divButton, decimalButton;
-        JButton[] operButtons;
+        JButton[] operButtons, keypadButtons;
         JTextField textField;
         JMenuBar menuBar;
         JMenu optionMenu;
@@ -50,7 +50,7 @@ public class MainWin extends JFrame implements ActionListener {
                 mainPanel.setLayout(new BorderLayout(10, 10));
                 numJPanel.setLayout(new GridLayout(4, 3, 10, 10));
                 operPanel.setLayout(new GridLayout(4, 2, 10, 10));
-                keyPanel.setLayout(new GridLayout(1, 2, 10, 10));
+                keyPanel.setLayout(new GridLayout(1, 3, 10, 10));
                 // operPanel.setSize(200, 500);
                 for (Integer i = 0; i <= 9; i++)
                 {
@@ -63,6 +63,7 @@ public class MainWin extends JFrame implements ActionListener {
                        numJPanel.add(numButton);
                        numButton.addActionListener(e -> this.textField.setText(this.textField.getText() + numButton.getText()));
                 }
+
                 cButton = new JButton("C");
                 equalButton = new JButton("=");
                 plusButton = new JButton("+");
@@ -71,29 +72,8 @@ public class MainWin extends JFrame implements ActionListener {
                 divButton = new JButton("/");
                 decimalButton = new JButton(".");
 
-                cButton.addActionListener(this);
-                equalButton.addActionListener(this);
-                plusButton.addActionListener(this);
-                minusButton.addActionListener(this);
-                multButton.addActionListener(this);
-                divButton.addActionListener(this);
-                decimalButton.addActionListener(this);
-
-                cButton.setBackground(new Color(23, 23, 23, 255));
-                equalButton.setBackground(Color.GREEN);
-                plusButton.setBackground(new Color(23, 23, 23, 255));
-                minusButton.setBackground(new Color(23, 23, 23, 255));
-                multButton.setBackground(new Color(23, 23, 23, 255));
-                divButton.setBackground(new Color(23, 23, 23, 255));
-                decimalButton.setBackground(new Color(23, 23, 23, 255));
-
-                cButton.setForeground(Color.RED);
-                equalButton.setForeground(Color.WHITE);
-                plusButton.setForeground(Color.WHITE);
-                minusButton.setForeground(Color.WHITE);
-                multButton.setForeground(Color.WHITE);
-                divButton.setForeground(Color.WHITE);
-                decimalButton.setForeground(Color.WHITE);
+                keypadButtons = new JButton[] {this.cButton, this.equalButton, this.plusButton, this.minusButton, this.multButton, this.divButton, this.decimalButton};
+                buttonsInit();
 
                 operButtons = new JButton[] {this.plusButton, this.minusButton, this.multButton, this.divButton};
                 
@@ -101,13 +81,8 @@ public class MainWin extends JFrame implements ActionListener {
                 this.setSize(400, 400);
                 this.setResizable(true);
                 this.setVisible(true);
-                operPanel.add(cButton);
-                operPanel.add(equalButton);
-                operPanel.add(plusButton);
-                operPanel.add(minusButton);
-                operPanel.add(multButton);
-                operPanel.add(divButton);
-                operPanel.add(decimalButton);
+                for (JButton button: keypadButtons)
+                        operPanel.add(button);
                 mainPanel.add(textField, BorderLayout.NORTH);
                 keyPanel.add(numJPanel);
                 keyPanel.add(operPanel);
@@ -118,6 +93,17 @@ public class MainWin extends JFrame implements ActionListener {
                 mainPanel.setBackground(Color.BLACK);
                 this.add(mainPanel);
                 this.setJMenuBar(menuBar);
+        }
+        public void buttonsInit()
+        {
+                for (JButton button: keypadButtons)
+                {
+                        button.addActionListener(this);
+                        button.setBackground(new Color(23, 23, 23, 255));
+                        button.setForeground(Color.WHITE);
+                }
+                equalButton.setBackground(Color.GREEN);
+                cButton.setForeground(Color.RED);
         }
         @Override
         public void actionPerformed(ActionEvent e)
@@ -208,12 +194,6 @@ public class MainWin extends JFrame implements ActionListener {
                                         return false;
                                 }
                         }
-                        // if (operationList.contains(this.textField.getText().charAt(i)))
-                        // {
-                        //         String o1 = this.textField.getText().substring(0, i);
-                        //         String o2 = this.textField.getText().substring(i+1, this.textField.getText().length());
-                        //         res = Float.parseFloat(o1);
-                        // }
                 }
                 return true;
         }
