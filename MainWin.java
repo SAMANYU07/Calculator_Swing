@@ -19,81 +19,84 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class MainWin extends JFrame implements ActionListener {
+        JPanel mainPanel, numJPanel, operPanel, keyPanel, scientJPanel;
         JButton cButton, equalButton, plusButton, minusButton, multButton, divButton, decimalButton;
-        JButton[] operButtons, keypadButtons;
+        JButton sinButton, cosButton, tanButton, asinButton, acosButton, atanButton;
+        JButton[] operButtons, keypadButtons, trignoButtons;
         JTextField textField;
         JMenuBar menuBar;
         JMenu optionMenu;
         JMenuItem programmingItem, exitItem;
         ArrayList<Character> operationList = new ArrayList<>(Arrays.asList('+', '-', '*', '/'));
         // Float oper1, oper2;
-        MainWin()
-        {
-                menuBar = new JMenuBar();
-                optionMenu = new JMenu("Options");
-                programmingItem = new JMenuItem("Programming Mode");
-                exitItem = new JMenuItem("Exit");
+        // MainWin()
+        // {
+        //         menuBar = new JMenuBar();
+        //         optionMenu = new JMenu("Options");
+        //         programmingItem = new JMenuItem("Scientific Mode");
+        //         exitItem = new JMenuItem("Exit");
 
-                menuBar.add(optionMenu);
-                optionMenu.add(programmingItem);
-                optionMenu.add(exitItem);
-                programmingItem.addActionListener(this);
-                exitItem.addActionListener(this);
+        //         menuBar.add(optionMenu);
+        //         optionMenu.add(programmingItem);
+        //         optionMenu.add(exitItem);
+        //         programmingItem.addActionListener(this);
+        //         exitItem.addActionListener(this);
 
-                JPanel mainPanel = new JPanel();
-                JPanel numJPanel = new JPanel();
-                JPanel operPanel = new JPanel();
-                JPanel keyPanel = new JPanel();
-                this.textField = new JTextField();
-                this.textField.setSize(500, 100);
-                this.textField.setFont(new Font("MV Boli", Font.BOLD, 20));
-                mainPanel.setLayout(new BorderLayout(10, 10));
-                numJPanel.setLayout(new GridLayout(4, 3, 10, 10));
-                operPanel.setLayout(new GridLayout(4, 2, 10, 10));
-                keyPanel.setLayout(new GridLayout(1, 3, 10, 10));
-                // operPanel.setSize(200, 500);
-                for (Integer i = 0; i <= 9; i++)
-                {
-                        JButton numButton = new JButton();
-                        numButton.setText(i.toString());
-                        // this.numButton.setSize(40, 40);
-                       numButton.setPreferredSize(new Dimension(40, 40));
-                       numButton.setForeground(Color.WHITE);
-                       numButton.setBackground(new Color(23, 23, 23, 255));
-                       numJPanel.add(numButton);
-                       numButton.addActionListener(e -> this.textField.setText(this.textField.getText() + numButton.getText()));
-                }
+        //         mainPanel = new JPanel();
+        //         numJPanel = new JPanel();
+        //         operPanel = new JPanel();
+        //         keyPanel = new JPanel();
+        //         this.textField = new JTextField();
+        //         this.textField.setSize(500, 100);
+        //         this.textField.setFont(new Font("MV Boli", Font.BOLD, 20));
+        //         mainPanel.setLayout(new BorderLayout(10, 10));
+        //         numJPanel.setLayout(new GridLayout(4, 3, 10, 10));
+        //         operPanel.setLayout(new GridLayout(4, 2, 10, 10));
+        //         keyPanel.setLayout(new GridLayout(1, 3, 10, 10));
+        //         // operPanel.setSize(200, 500);
+        //         for (Integer i = 0; i <= 9; i++)
+        //         {
+        //                 JButton numButton = new JButton();
+        //                 numButton.setText(i.toString());
+        //                 // this.numButton.setSize(40, 40);
+        //                numButton.setPreferredSize(new Dimension(40, 40));
+        //                numButton.setForeground(Color.WHITE);
+        //                numButton.setBackground(new Color(23, 23, 23, 255));
+        //                numJPanel.add(numButton);
+        //                numButton.addActionListener(e -> this.textField.setText(this.textField.getText() + numButton.getText()));
+        //         }
 
-                cButton = new JButton("C");
-                equalButton = new JButton("=");
-                plusButton = new JButton("+");
-                minusButton = new JButton("-");
-                multButton = new JButton("*");
-                divButton = new JButton("/");
-                decimalButton = new JButton(".");
+        //         cButton = new JButton("C");
+        //         equalButton = new JButton("=");
+        //         plusButton = new JButton("+");
+        //         minusButton = new JButton("-");
+        //         multButton = new JButton("*");
+        //         divButton = new JButton("/");
+        //         decimalButton = new JButton(".");
 
-                keypadButtons = new JButton[] {this.cButton, this.equalButton, this.plusButton, this.minusButton, this.multButton, this.divButton, this.decimalButton};
-                buttonsInit();
+        //         keypadButtons = new JButton[] {this.cButton, this.equalButton, this.plusButton, this.minusButton, this.multButton, this.divButton, this.decimalButton};
+        //         trignoButtons = new JButton[] {this.sinButton, this.cosButton, this.tanButton, this.asinButton, this.acosButton, this.atanButton};
+        //         buttonsInit();
 
-                operButtons = new JButton[] {this.plusButton, this.minusButton, this.multButton, this.divButton};
+        //         operButtons = new JButton[] {this.plusButton, this.minusButton, this.multButton, this.divButton};
                 
-                this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                this.setSize(400, 400);
-                this.setResizable(true);
-                this.setVisible(true);
-                for (JButton button: keypadButtons)
-                        operPanel.add(button);
-                mainPanel.add(textField, BorderLayout.NORTH);
-                keyPanel.add(numJPanel);
-                keyPanel.add(operPanel);
-                mainPanel.add(keyPanel);
-                operPanel.setBackground(Color.BLACK);
-                numJPanel.setBackground(Color.BLACK);
-                keyPanel.setBackground(Color.BLACK);
-                mainPanel.setBackground(Color.BLACK);
-                this.add(mainPanel);
-                this.setJMenuBar(menuBar);
-        }
+        //         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //         this.setSize(400, 400);
+        //         this.setResizable(true);
+        //         this.setVisible(true);
+        //         for (JButton button: keypadButtons)
+        //                 operPanel.add(button);
+        //         mainPanel.add(textField, BorderLayout.NORTH);
+        //         keyPanel.add(numJPanel);
+        //         keyPanel.add(operPanel);
+        //         mainPanel.add(keyPanel);
+        //         operPanel.setBackground(Color.BLACK);
+        //         numJPanel.setBackground(Color.BLACK);
+        //         keyPanel.setBackground(Color.BLACK);
+        //         mainPanel.setBackground(Color.BLACK);
+        //         this.add(mainPanel);
+        //         this.setJMenuBar(menuBar);
+        // }
         public void buttonsInit()
         {
                 for (JButton button: keypadButtons)
@@ -110,10 +113,24 @@ public class MainWin extends JFrame implements ActionListener {
         {
                 if (e.getSource() == this.exitItem)
                         System.exit(ABORT);
+                else if (e.getSource() == this.sinButton)
+                        System.out.println("sin");
                 else if (e.getSource() == this.programmingItem)
-                        JOptionPane.showMessageDialog(this, "Option is in developmet", "Hold on", JOptionPane.DEFAULT_OPTION);
+                {
+                        ScientificMode.ScientificMode_Init(this);
+//                         new ScientificMode(this);
+//                        System.out.println("sin added");
+//                        sinButton = new JButton("sin(X)");
+//                        scientJPanel = new JPanel();
+//                        scientJPanel.setLayout(new GridLayout(1, 1, 10, 10));
+//                        scientJPanel.add(sinButton);
+//                        mainPanel.add(scientJPanel, BorderLayout.EAST);
+//                        mainPanel.revalidate();
+//                        mainPanel.repaint();
+                }
+                        // JOptionPane.showMessageDialog(this, "Option is in developmet", "Hold on", JOptionPane.DEFAULT_OPTION);
                 else if (e.getSource() == this.cButton)
-                        this.textField.setText("");
+                        this.textField.setText("f");
                 else if (e.getSource() == this.decimalButton && this.textField.getText().length() != 0)
                         this.textField.setText(this.textField.getText() + ".");
                 else if (e.getSource() == this.equalButton)
