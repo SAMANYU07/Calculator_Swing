@@ -59,46 +59,64 @@ public class ScientificMode extends BasicModeWin {
             win.subMode = true;
             win.MODE = Constants.SIN;
             win.equalButton.setText("↑");
+            win.textField.setBackground(Color.GRAY);
+            win.subField.setBackground(Color.WHITE);
         });
         win.cosButton.addActionListener(e -> {
             win.subMode = true;
             win.MODE = Constants.COS;
             win.equalButton.setText("↑");
+            win.textField.setBackground(Color.GRAY);
+            win.subField.setBackground(Color.WHITE);
         });
         win.tanButton.addActionListener(e -> {
             win.subMode = true;
             win.MODE = Constants.TAN;
             win.equalButton.setText("↑");
+            win.textField.setBackground(Color.GRAY);
+            win.subField.setBackground(Color.WHITE);
         });
         win.asinButton.addActionListener(e -> {
             win.subMode = true;
             win.MODE = Constants.ASIN;
             win.equalButton.setText("↑");
+            win.textField.setBackground(Color.GRAY);
+            win.subField.setBackground(Color.WHITE);
         });
         win.acosButton.addActionListener(e -> {
             win.subMode = true;
             win.MODE = Constants.ACOS;
             win.equalButton.setText("↑");
+            win.textField.setBackground(Color.GRAY);
+            win.subField.setBackground(Color.WHITE);
         });
         win.atanButton.addActionListener(e -> {
             win.subMode = true;
             win.MODE = Constants.ATAN;
             win.equalButton.setText("↑");
+            win.textField.setBackground(Color.GRAY);
+            win.subField.setBackground(Color.WHITE);
         });
         win.sqrtButton.addActionListener(e -> {
             win.subMode = true;
             win.MODE = Constants.SQRT;
             win.equalButton.setText("↑");
+            win.textField.setBackground(Color.GRAY);
+            win.subField.setBackground(Color.WHITE);
         });
         win.logButton.addActionListener(e -> {
             win.subMode = true;
             win.MODE = Constants.LOG;
             win.equalButton.setText("↑");
+            win.textField.setBackground(Color.GRAY);
+            win.subField.setBackground(Color.WHITE);
         });
         win.log10Button.addActionListener(e -> {
             win.subMode = true;
             win.MODE = Constants.LOG10;
             win.equalButton.setText("↑");
+            win.textField.setBackground(Color.GRAY);
+            win.subField.setBackground(Color.WHITE);
         });
 
         win.scientJPanel.add(win.sinButton);

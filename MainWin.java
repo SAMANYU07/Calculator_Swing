@@ -155,6 +155,8 @@ public class MainWin extends JFrame implements ActionListener {
                                 subMode = false;
                                 MODE = -1;
                                 this.equalButton.setText("=");
+                                this.textField.setBackground(Color.WHITE);
+                                this.subField.setBackground(Color.GRAY);
                         }
                         this.subField.setText("");
                 }
