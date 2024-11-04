@@ -41,6 +41,7 @@ public class ScientificMode extends BasicModeWin {
             win.subField.setText("");
             win.MODE = -1;
             win.subMode = false;
+            win.equalButton.setText("=");
         });
 
         for (JButton button : win.scientButtons)
@@ -57,38 +58,47 @@ public class ScientificMode extends BasicModeWin {
         win.sinButton.addActionListener(e -> {
             win.subMode = true;
             win.MODE = Constants.SIN;
+            win.equalButton.setText("↑");
         });
         win.cosButton.addActionListener(e -> {
             win.subMode = true;
             win.MODE = Constants.COS;
+            win.equalButton.setText("↑");
         });
         win.tanButton.addActionListener(e -> {
             win.subMode = true;
             win.MODE = Constants.TAN;
+            win.equalButton.setText("↑");
         });
         win.asinButton.addActionListener(e -> {
             win.subMode = true;
             win.MODE = Constants.ASIN;
+            win.equalButton.setText("↑");
         });
         win.acosButton.addActionListener(e -> {
             win.subMode = true;
             win.MODE = Constants.ACOS;
+            win.equalButton.setText("↑");
         });
         win.atanButton.addActionListener(e -> {
             win.subMode = true;
             win.MODE = Constants.ATAN;
+            win.equalButton.setText("↑");
         });
         win.sqrtButton.addActionListener(e -> {
             win.subMode = true;
             win.MODE = Constants.SQRT;
+            win.equalButton.setText("↑");
         });
         win.logButton.addActionListener(e -> {
             win.subMode = true;
             win.MODE = Constants.LOG;
+            win.equalButton.setText("↑");
         });
         win.log10Button.addActionListener(e -> {
             win.subMode = true;
             win.MODE = Constants.LOG10;
+            win.equalButton.setText("↑");
         });
 
         win.scientJPanel.add(win.sinButton);
