@@ -36,13 +36,14 @@ public class BasicModeWin extends MainWin {
                 numJPanel = new JPanel();
                 operPanel = new JPanel();
                 keyPanel = new JPanel();
-                this.textField = new JTextField();
-                this.textField.setSize(500, 100);
-                this.textField.setFont(new Font("MV Boli", Font.BOLD, 20));
+                inputPanel = new JPanel();textField = new JTextField();
+                textField.setSize(500, 100);
+                textField.setFont(new Font("MV Boli", Font.BOLD, 20));
                 mainPanel.setLayout(new BorderLayout(10, 10));
                 numJPanel.setLayout(new GridLayout(4, 3, 10, 10));
                 operPanel.setLayout(new GridLayout(4, 2, 10, 10));
                 keyPanel.setLayout(new GridLayout(1, 3, 10, 10));
+                inputPanel.setLayout(new GridLayout(2, 1, 10, 10));
                 // operPanel.setSize(200, 500);
                 for (Integer i = 0; i <= 9; i++)
                 {
@@ -53,7 +54,11 @@ public class BasicModeWin extends MainWin {
                        numButton.setForeground(Color.WHITE);
                        numButton.setBackground(new Color(23, 23, 23, 255));
                        numJPanel.add(numButton);
-                       numButton.addActionListener(e -> this.textField.setText(this.textField.getText() + numButton.getText()));
+                       numButton.addActionListener(e -> {
+                               if (this.subMode)
+                                       this.subField.setText(this.subField.getText() + numButton.getText());
+                               else this.textField.setText(this.textField.getText() + numButton.getText());
+                       });
                 }
 
                 cButton = new JButton("C");
@@ -65,7 +70,7 @@ public class BasicModeWin extends MainWin {
                 decimalButton = new JButton(".");
 
                 keypadButtons = new JButton[] {this.cButton, this.equalButton, this.plusButton, this.minusButton, this.multButton, this.divButton, this.decimalButton};
-                trignoButtons = new JButton[] {this.sinButton, this.cosButton, this.tanButton, this.asinButton, this.acosButton, this.atanButton};
+//                scientButtons = new JButton[] {this.sinButton, this.cosButton, this.tanButton, this.asinButton, this.acosButton, this.atanButton, this.sqrtButton, this.logButton, log10Button};
                 buttonsInit();
 
                 operButtons = new JButton[] {this.plusButton, this.minusButton, this.multButton, this.divButton};
@@ -76,13 +81,16 @@ public class BasicModeWin extends MainWin {
                 this.setVisible(true);
                 for (JButton button: keypadButtons)
                         operPanel.add(button);
-                mainPanel.add(textField, BorderLayout.NORTH);
+//                mainPanel.add(textField, BorderLayout.NORTH);
+                inputPanel.add(textField);
+                mainPanel.add(inputPanel, BorderLayout.NORTH);
                 keyPanel.add(numJPanel);
                 keyPanel.add(operPanel);
                 mainPanel.add(keyPanel);
                 operPanel.setBackground(Color.BLACK);
                 numJPanel.setBackground(Color.BLACK);
                 keyPanel.setBackground(Color.BLACK);
+                inputPanel.setBackground(Color.BLACK);
                 mainPanel.setBackground(Color.BLACK);
                 this.add(mainPanel);
                 this.setJMenuBar(menuBar);

@@ -1,11 +1,4 @@
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -18,16 +11,32 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+ class Constants {
+         public static final int SIN = 0;
+         public static final int COS = 1;
+         public static final int TAN = 2;
+         public static final int ASIN = 3;
+         public static final int ACOS = 4;
+         public static final int ATAN = 5;
+         public static final int SQRT = 6;
+         public static final int LOG = 7;
+         public static final int LOG10 = 8;
+}
+
 public class MainWin extends JFrame implements ActionListener {
-        JPanel mainPanel, numJPanel, operPanel, keyPanel, scientJPanel;
+//         ImageIcon ic
+        JPanel mainPanel, numJPanel, operPanel, keyPanel, scientJPanel, inputPanel;
         JButton cButton, equalButton, plusButton, minusButton, multButton, divButton, decimalButton;
-        JButton sinButton, cosButton, tanButton, asinButton, acosButton, atanButton;
-        JButton[] operButtons, keypadButtons, trignoButtons;
-        JTextField textField;
+        JButton sinButton, cosButton, tanButton, asinButton, acosButton, atanButton, sqrtButton, logButton, log10Button;
+        JButton[] operButtons, keypadButtons, scientButtons;
+        JTextField textField, subField;
         JMenuBar menuBar;
         JMenu optionMenu;
         JMenuItem programmingItem, exitItem;
+        boolean subMode = false;
+        int MODE = -1;
         ArrayList<Character> operationList = new ArrayList<>(Arrays.asList('+', '-', '*', '/'));
+        private boolean evalSuccess;
         // Float oper1, oper2;
         // MainWin()
         // {
@@ -130,21 +139,33 @@ public class MainWin extends JFrame implements ActionListener {
                 }
                         // JOptionPane.showMessageDialog(this, "Option is in developmet", "Hold on", JOptionPane.DEFAULT_OPTION);
                 else if (e.getSource() == this.cButton)
-                        this.textField.setText("f");
+                {
+                        this.textField.setText("");
+                        this.subField.setText("");
+                }
                 else if (e.getSource() == this.decimalButton && this.textField.getText().length() != 0)
                         this.textField.setText(this.textField.getText() + ".");
                 else if (e.getSource() == this.equalButton)
-                        eval();
+                {
+                        if (!subMode)
+                                eval();
+                        else
+                        {
+                                this.textField.setText(this.textField.getText() + Double.toString(ScientificMode.evalMath(this)));
+                                subMode = false;
+                        }
+                        this.subField.setText("");
+                }
                 else
                 {
                         for (JButton button: this.operButtons)
                         {
                                 if (e.getSource() == button)
                                 {
-                                        boolean EVAL_SUCCESS = true;
+                                        boolean evalSuccess = true;
                                         if (this.textField.getText().contains("+") || this.textField.getText().contains("*") || this.textField.getText().contains("-") || this.textField.getText().contains("/"))
-                                                EVAL_SUCCESS = eval();
-                                        if (EVAL_SUCCESS)
+                                                evalSuccess = eval();
+                                        if (evalSuccess)
                                                 this.textField.setText(this.textField.getText() + button.getText());
                                 }
                         }
