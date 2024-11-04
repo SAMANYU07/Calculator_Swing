@@ -147,12 +147,13 @@ public class MainWin extends JFrame implements ActionListener {
                         this.textField.setText(this.textField.getText() + ".");
                 else if (e.getSource() == this.equalButton)
                 {
-                        if (!subMode)
+                        if (this.MODE == -1)
                                 eval();
                         else
                         {
                                 this.textField.setText(this.textField.getText() + Double.toString(ScientificMode.evalMath(this)));
                                 subMode = false;
+                                MODE = -1;
                         }
                         this.subField.setText("");
                 }

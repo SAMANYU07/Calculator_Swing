@@ -10,13 +10,13 @@ public class ScientificMode extends BasicModeWin {
         {
             case 0 -> Math.sin(Double.parseDouble(win.subField.getText()) * (Math.PI / 180));
             case 1 -> Math.cos(Double.parseDouble(win.subField.getText()) * (Math.PI / 180));
-            case 3 -> Math.tan(Double.parseDouble(win.subField.getText()) * (Math.PI / 180));
-            case 4 -> Math.asin(Double.parseDouble(win.subField.getText()) * (Math.PI / 180));
-            case 5 -> Math.acos(Double.parseDouble(win.subField.getText()) * (Math.PI / 180));
-            case 6 -> Math.atan(Double.parseDouble(win.subField.getText()) * (Math.PI / 180));
-            case 7 -> Math.sqrt(Double.parseDouble(win.subField.getText()) * (Math.PI / 180));
-            case 8 -> Math.log(Double.parseDouble(win.subField.getText()) * (Math.PI / 180));
-            case 9 -> Math.log10(Double.parseDouble(win.subField.getText()) * (Math.PI / 180));
+            case 2 -> Math.tan(Double.parseDouble(win.subField.getText()) * (Math.PI / 180));
+            case 3 -> Math.asin(Double.parseDouble(win.subField.getText()) * (Math.PI / 180));
+            case 4 -> Math.acos(Double.parseDouble(win.subField.getText()) * (Math.PI / 180));
+            case 5 -> Math.atan(Double.parseDouble(win.subField.getText()) * (Math.PI / 180));
+            case 6 -> Math.sqrt(Double.parseDouble(win.subField.getText()));
+            case 7 -> Math.log(Double.parseDouble(win.subField.getText()));
+            case 8 -> Math.log10(Double.parseDouble(win.subField.getText()));
             default -> 0.0;
         };
     }
