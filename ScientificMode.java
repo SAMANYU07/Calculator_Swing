@@ -21,7 +21,16 @@ public class ScientificMode extends BasicModeWin {
         };
     }
 
-    public static void ScientificMode_Init(MainWin win) {
+    public static  void activateFuncMode(MainWin win)
+    {
+        win.subMode = true;
+        win.equalButton.setText("↑");
+        win.textField.setBackground(Color.GRAY);
+        win.subField.setBackground(Color.WHITE);
+    }
+
+    public static void ScientificMode_Init(MainWin win)
+    {
         win.sinButton = new JButton("sin(x)");
         win.cosButton = new JButton("cos(x)");
         win.tanButton = new JButton("tan(x)");
@@ -33,7 +42,10 @@ public class ScientificMode extends BasicModeWin {
         win.log10Button = new JButton("log10(x)");
         win.scientButtons = new JButton[]{win.sinButton, win.cosButton, win.tanButton, win.asinButton, win.acosButton, win.atanButton, win.sqrtButton, win.logButton, win.log10Button};
         win.subField = new JTextField();
+        win.subField.setBackground(Color.GRAY);
 //        win.subField.addActionListener(e -> win.subField.setText(Double.toString(evalMath(win))));
+        for (JButton button: win.scientButtons)
+            button.setFont(new Font("Arial", Font.BOLD, 14));
         win.subField.addActionListener(e -> {
             if (win.MODE == -1)
                 return;
@@ -41,6 +53,7 @@ public class ScientificMode extends BasicModeWin {
             win.subField.setText("");
             win.MODE = -1;
             win.subMode = false;
+            win.equalButton.setText("=");
         });
 
         for (JButton button : win.scientButtons)
@@ -55,40 +68,40 @@ public class ScientificMode extends BasicModeWin {
         win.scientJPanel.setBackground(Color.BLACK);
 
         win.sinButton.addActionListener(e -> {
-            win.subMode = true;
             win.MODE = Constants.SIN;
+            activateFuncMode(win);
         });
         win.cosButton.addActionListener(e -> {
-            win.subMode = true;
             win.MODE = Constants.COS;
+            activateFuncMode(win);
         });
         win.tanButton.addActionListener(e -> {
-            win.subMode = true;
             win.MODE = Constants.TAN;
+            activateFuncMode(win);
         });
         win.asinButton.addActionListener(e -> {
-            win.subMode = true;
             win.MODE = Constants.ASIN;
+            activateFuncMode(win);
         });
         win.acosButton.addActionListener(e -> {
-            win.subMode = true;
             win.MODE = Constants.ACOS;
+            activateFuncMode(win);
         });
         win.atanButton.addActionListener(e -> {
-            win.subMode = true;
             win.MODE = Constants.ATAN;
+            activateFuncMode(win);
         });
         win.sqrtButton.addActionListener(e -> {
-            win.subMode = true;
             win.MODE = Constants.SQRT;
+            activateFuncMode(win);
         });
         win.logButton.addActionListener(e -> {
-            win.subMode = true;
             win.MODE = Constants.LOG;
+            activateFuncMode(win);
         });
         win.log10Button.addActionListener(e -> {
-            win.subMode = true;
             win.MODE = Constants.LOG10;
+            activateFuncMode(win);
         });
 
         win.scientJPanel.add(win.sinButton);

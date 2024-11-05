@@ -51,6 +51,7 @@ public class BasicModeWin extends MainWin {
                         numButton.setText(i.toString());
                         // this.numButton.setSize(40, 40);
                        numButton.setPreferredSize(new Dimension(40, 40));
+                       numButton.setFont(new Font("Arial", Font.BOLD, 18));
                        numButton.setForeground(Color.WHITE);
                        numButton.setBackground(new Color(23, 23, 23, 255));
                        numJPanel.add(numButton);
@@ -74,6 +75,9 @@ public class BasicModeWin extends MainWin {
                 buttonsInit();
 
                 operButtons = new JButton[] {this.plusButton, this.minusButton, this.multButton, this.divButton};
+
+                for (JButton button: keypadButtons)
+                        button.setFont(new Font("Arial", Font.BOLD, 18));
                 
                 this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 this.setSize(400, 400);
